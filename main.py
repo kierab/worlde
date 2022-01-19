@@ -1,6 +1,5 @@
 from tkinter import *
 import random
-import pandas as pd
 
 
 root = Tk();
@@ -9,14 +8,12 @@ root.title('worlde 👌')
 
 # WORDLIST = pd.read_csv('5lwords.csv')
 # TESTWORD = "tiles"
-data = pd.read_table('words.txt').values.tolist()
+my_file = open("words.txt", "r")
+wordlist = my_file.read().split('\n')
+my_file.close()
 
-TESTWORD = data[random.randint(0,len(data))][0]
+TESTWORD = wordlist[random.randint(0,len(wordlist))]
 
-print(TESTWORD)
-
-# TESTWORD = pd.read_csv('5lwords.csv').sample(n=1)
-# global position
 
 position = 0
 guessword = ""
@@ -24,7 +21,7 @@ guessword = ""
 # game functions
 def generate_word():
     # get big dict or something of 5 letter words
-    return data[random.randint(0,len(data))][0]
+    return wordlist[random.randint(0,len(wordlist))]
 
 def newgame():
     # also generate a new word
