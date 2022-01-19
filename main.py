@@ -1,5 +1,4 @@
 from tkinter import *
-import time
 import random
 import pandas as pd
 
@@ -9,7 +8,12 @@ root.resizable(False,False)
 root.title('worlde 👌')
 
 # WORDLIST = pd.read_csv('5lwords.csv')
-TESTWORD = "tiles"
+# TESTWORD = "tiles"
+data = pd.read_table('words.txt').values.tolist()
+
+TESTWORD = data[random.randint(0,len(data))][0]
+
+print(TESTWORD)
 
 # TESTWORD = pd.read_csv('5lwords.csv').sample(n=1)
 # global position
@@ -20,11 +24,13 @@ guessword = ""
 # game functions
 def generate_word():
     # get big dict or something of 5 letter words
-    pass
+    return data[random.randint(0,len(data))][0]
 
 def newgame():
     # also generate a new word
     global position
+    global TESTWORD
+    TESTWORD = generate_word()
     word_guess.delete(0, len(word_guess.get()))
     position = 0
     status['text'] = "hi"
@@ -33,7 +39,10 @@ def newgame():
         for j in range(5):
             tiles[i][j]['text'] = ""
             tiles[i][j].config(bg="#f0f0f0")
-    print(f"answer = {TESTWORD}")
+    # print(f"answer = {TESTWORD}")
+
+def show_ans():
+    status['text'] = f"word is {TESTWORD}"
 
 def send_word():
     #test
@@ -120,8 +129,14 @@ tiles = [[0,0,0,0,0],
 heading = Label(text="worlde 👌💪", font=("Helvetica",30))
 heading.pack(side="top")
 
-reset_btn = Button(text="reset", font=("Helvetica",15),command=newgame)
-reset_btn.pack()
+btnframe = Frame(root)
+btnframe.pack()
+
+reset_btn = Button(btnframe,text="reset", font=("Helvetica",15),command=newgame)
+reset_btn.pack(side=LEFT,padx=2)
+
+show_ans_btn = Button(btnframe,text="answer",command=show_ans,font=("Helvetica",15))
+show_ans_btn.pack(side=RIGHT)
 
 status = Label(text="hi", font=("Helvetica",15))
 status.pack(pady=2)

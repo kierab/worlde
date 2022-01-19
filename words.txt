@@ -1,4 +1,4 @@
-﻿aback
+aback
 abase
 abate
 abaya
@@ -2496,4 +2496,5 @@ young
 yours
 youth
 yummy
+zebra
 zones
