@@ -1,15 +1,19 @@
 from tkinter import *
 import time
 import random
+import pandas as pd
 
 
 root = Tk();
 root.resizable(False,False)
 root.title('worlde 👌')
 
-WORDLIST = []
+# WORDLIST = pd.read_csv('5lwords.csv')
 TESTWORD = "tiles"
+
+# TESTWORD = pd.read_csv('5lwords.csv').sample(n=1)
 # global position
+
 position = 0
 guessword = ""
 
